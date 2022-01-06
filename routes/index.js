@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
-const dataPath = './data/index.json'
+const dataPath = './data/index.json';
 const fs = require('fs');
+const cors = require('cors');
+router.options('/', cors());
 
-router.get('/', function (req, res, next) {
+router.get('/', cors(),function (req, res, next) {
   const accounts = getAccountData()
   res.send(accounts);
 });
 
-router.post('/', (req, res) => {
+router.post('/', cors(), (req, res) => {
 
   var existAccounts = getAccountData();
   const newAccountId = Math.floor(100000 + Math.random() * 900000)
@@ -21,7 +23,7 @@ router.post('/', (req, res) => {
   })
 });
 
-router.delete('/', (req, res) => {
+router.delete('/', cors(), (req, res) => {
 
   var existAccounts = getAccountData();
   delete existAccounts[req.body.id]
@@ -33,7 +35,7 @@ router.delete('/', (req, res) => {
   })
 });
 
-router.put('/', (req, res) => {
+router.put('/', cors(), (req, res) => {
 
   var existAccounts = getAccountData();
   let id = Object.keys(req.body)[0];
