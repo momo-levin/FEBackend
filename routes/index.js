@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const dataPath = './data/index.json'
+const dataPath = './data/index.json';
 const fs = require('fs');
+const cors = require('cors');
 
-router.get('/', function (req, res, next) {
+router.get('/', cors(),function (req, res, next) {
   const accounts = getAccountData()
   res.send(accounts);
 });
