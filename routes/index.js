@@ -19,7 +19,7 @@ router.post('/', cors(), (req, res) => {
   saveAccountData(existAccounts);
   res.send({
     success: true,
-    msg: 'account added successfully'
+    msg: newAccountId
   })
 });
 
